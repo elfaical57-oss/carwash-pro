@@ -397,17 +397,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dk);color:var(
 .abo-plan-old{font-size:.85rem;color:var(--mt);text-decoration:line-through;margin-left:8px}
 .abo-plan-desc{color:var(--mt);font-size:.82rem;margin-top:6px}
 /* vehicle cards */
-.veh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
-@media(max-width:420px){.veh-grid{grid-template-columns:repeat(2,1fr)}}
+.veh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
 .veh-card{
   background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.09);
-  border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;
-  transition:all .2s;
+  border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;
+  transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:4px;
 }
 .veh-card:hover{border-color:var(--pu);background:rgba(108,99,255,.07)}
 .veh-card.sel{border-color:var(--pu);background:rgba(108,99,255,.15);color:var(--pu)}
-.veh-card .vi{font-size:1.8rem;margin-bottom:8px}
-.veh-card span{font-size:.8rem;font-weight:700;display:block}
+.veh-card .vi{font-size:1.4rem;line-height:1}
+.veh-card span{font-size:.75rem;font-weight:700;display:block;line-height:1.2}
 /* show/hide panels */
 #panel-ponctuel{display:block}
 #panel-abonnement{display:none}
@@ -1703,11 +1702,27 @@ const today = `${yyyy}-${mm}-${dd}`;
 /* Pre-select next available 30-min slot */
 const curH = nowMA.getHours();
 const curM = nowMA.getMinutes();
-const nextM = curM < 30 ? 30 : 0;
-const nextH = curM < 30 ? curH : curH + 1;
-const slotStr = nextH < 20 && nextH >= 8
-  ? `${String(nextH).padStart(2,'0')}:${String(nextM).padStart(2,'0')}`
-  : '08:00';
+let nextH = curM < 30 ? curH : curH + 1;
+let nextM = curM < 30 ? 30 : 0;
+
+const isAfterHours = nextH >= 20 || nextH < 8;
+
+if(isAfterHours) {
+  /* After 20h → set date to tomorrow, slot 08:00 */
+  const tomorrow = new Date(nowMA);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const ty = tomorrow.getFullYear();
+  const tm = String(tomorrow.getMonth()+1).padStart(2,'0');
+  const td = String(tomorrow.getDate()).padStart(2,'0');
+  const tomorrowStr = `${ty}-${tm}-${td}`;
+  ['f-date','m-date'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el){ el.min = tomorrowStr; el.value = tomorrowStr; }
+  });
+  nextH = 8; nextM = 0;
+}
+
+const slotStr = `${String(nextH).padStart(2,'0')}:${String(nextM).padStart(2,'0')}`;
 
 ['f-time','m-time'].forEach(id => {
   const sel = document.getElementById(id);
