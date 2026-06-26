@@ -374,6 +374,43 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dk);color:var(
   transition:all .25s;user-select:none;display:flex;align-items:center;justify-content:center;gap:8px;
 }
 .type-btn.on{background:var(--pu);color:#fff;box-shadow:0 4px 16px rgba(108,99,255,.3)}
+
+/* ── Abonnement plans ── */
+.abo-step{font-size:.75rem;font-weight:700;letter-spacing:1.5px;color:var(--mt);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.abo-step-num{width:22px;height:22px;background:var(--pu);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:#fff;flex-shrink:0}
+.abo-plans{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.abo-plan{
+  background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.09);
+  border-radius:14px;padding:16px 20px;cursor:pointer;
+  transition:border-color .2s,background .2s;position:relative;
+}
+.abo-plan:hover{border-color:var(--pu);background:rgba(108,99,255,.06)}
+.abo-plan.sel{border-color:var(--pu);background:rgba(108,99,255,.1)}
+.abo-pop{
+  position:absolute;top:-10px;left:16px;
+  background:var(--pu);color:#fff;font-size:.68rem;font-weight:700;
+  letter-spacing:1px;padding:3px 10px;border-radius:50px;
+}
+.abo-plan-name{font-size:1rem;font-weight:800;margin-bottom:4px}
+.abo-plan-price{font-size:1.6rem;font-weight:900;color:var(--tx);line-height:1}
+.abo-plan-price sub{font-size:.85rem;font-weight:600;color:var(--mt)}
+.abo-plan-old{font-size:.85rem;color:var(--mt);text-decoration:line-through;margin-left:8px}
+.abo-plan-desc{color:var(--mt);font-size:.82rem;margin-top:6px}
+/* vehicle cards */
+.veh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+@media(max-width:420px){.veh-grid{grid-template-columns:repeat(2,1fr)}}
+.veh-card{
+  background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.09);
+  border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;
+  transition:all .2s;
+}
+.veh-card:hover{border-color:var(--pu);background:rgba(108,99,255,.07)}
+.veh-card.sel{border-color:var(--pu);background:rgba(108,99,255,.15);color:var(--pu)}
+.veh-card .vi{font-size:1.8rem;margin-bottom:8px}
+.veh-card span{font-size:.8rem;font-weight:700;display:block}
+/* show/hide panels */
+#panel-ponctuel{display:block}
+#panel-abonnement{display:none}
 .fg{margin-bottom:18px}
 .fg label{
   display:block;font-size:.78rem;font-weight:700;
@@ -950,67 +987,138 @@ footer{
 
       <div class="type-toggle" id="typeTgl">
         <div class="type-btn on" onclick="setType(this,'Ponctuel')">🎯 Ponctuel</div>
-        <div class="type-btn" onclick="setType(this,'Abonnement mensuel')">🔄 Abonnement</div>
+        <div class="type-btn" onclick="setType(this,'Abonnement')">🔄 Abonnement</div>
       </div>
 
-      <div class="fg-row">
-        <div class="fg">
-          <label>Prénom & Nom</label>
-          <input type="text" id="f-name" placeholder="Karim Alaoui"/>
+      <!-- ══ PANEL PONCTUEL ══ -->
+      <div id="panel-ponctuel">
+        <div class="fg-row">
+          <div class="fg">
+            <label>Prénom & Nom</label>
+            <input type="text" id="f-name" placeholder="Karim Alaoui"/>
+          </div>
+          <div class="fg">
+            <label>Téléphone</label>
+            <input type="tel" id="f-phone" placeholder="06XXXXXXXX"/>
+          </div>
         </div>
         <div class="fg">
-          <label>Téléphone</label>
-          <input type="tel" id="f-phone" placeholder="06XXXXXXXX"/>
-        </div>
-      </div>
-
-      <div class="fg">
-        <label>Adresse / Zone</label>
-        <input type="text" id="f-addr" placeholder="Ex : Casablanca, Maarif, Rue X"/>
-      </div>
-
-      <div class="fg">
-        <label>Forfait souhaité</label>
-        <select id="f-pack">
-          <option value="">— Sélectionner un forfait —</option>
-          <option value="Soin Extérieur – 49 DH">🚿 Soin Extérieur – 49 DH</option>
-          <option value="Soin Intégral – 99 DH">✨ Soin Intégral – 99 DH (Recommandé)</option>
-          <option value="Protection Céramique – 150 DH">🛡️ Protection Céramique – 150 DH</option>
-        </select>
-      </div>
-
-      <div class="fg">
-        <label>Type de véhicule</label>
-        <select id="f-car">
-          <option value="">— Type de véhicule —</option>
-          <option>Citadine / Berline</option>
-          <option>SUV / 4x4</option>
-          <option>Monospace / Van</option>
-          <option>Pick-up / Utilitaire</option>
-          <option>Moto / Scooter</option>
-        </select>
-      </div>
-
-      <div class="fg-row">
-        <div class="fg">
-          <label>Date souhaitée</label>
-          <input type="date" id="f-date"/>
+          <label>Adresse / Zone</label>
+          <input type="text" id="f-addr" placeholder="Ex : Casablanca, Maarif, Rue X"/>
         </div>
         <div class="fg">
-          <label>Heure souhaitée</label>
-          <input type="time" id="f-time"/>
+          <label>Forfait souhaité</label>
+          <select id="f-pack">
+            <option value="">— Sélectionner un forfait —</option>
+            <option value="Soin Extérieur – 49 DH">🚿 Soin Extérieur – 49 DH</option>
+            <option value="Soin Intégral – 99 DH">✨ Soin Intégral – 99 DH (Recommandé)</option>
+            <option value="Protection Céramique – 150 DH">🛡️ Protection Céramique – 150 DH</option>
+          </select>
         </div>
+        <div class="fg">
+          <label>Type de véhicule</label>
+          <select id="f-car">
+            <option value="">— Type de véhicule —</option>
+            <option>Citadine</option>
+            <option>Berline</option>
+            <option>SUV / 4x4</option>
+            <option>Monospace / Van</option>
+            <option>Pick-up / Utilitaire</option>
+            <option>Moto / Scooter</option>
+          </select>
+        </div>
+        <div class="fg-row">
+          <div class="fg">
+            <label>Date souhaitée</label>
+            <input type="date" id="f-date"/>
+          </div>
+          <div class="fg">
+            <label>Heure souhaitée</label>
+            <input type="time" id="f-time"/>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Informations complémentaires (optionnel)</label>
+          <textarea id="f-notes" placeholder="Couleur du véhicule, accès parking, remarques…"></textarea>
+        </div>
+        <button class="btn-wa" onclick="sendWA()">
+          <span style="font-size:1.3rem">📲</span>
+          Envoyer ma réservation sur WhatsApp
+        </button>
       </div>
 
-      <div class="fg">
-        <label>Informations complémentaires (optionnel)</label>
-        <textarea id="f-notes" placeholder="Couleur du véhicule, accès parking, remarques…"></textarea>
-      </div>
+      <!-- ══ PANEL ABONNEMENT ══ -->
+      <div id="panel-abonnement">
 
-      <button class="btn-wa" onclick="sendWA()">
-        <span style="font-size:1.3rem">📲</span>
-        Envoyer ma réservation sur WhatsApp
-      </button>
+        <!-- Step 1 : Choix abonnement -->
+        <div class="abo-step"><div class="abo-step-num">1</div> CHOIX DE L'ABONNEMENT</div>
+        <div class="abo-plans">
+          <div class="abo-plan sel" id="abo-hebdo" onclick="selAbo('Hebdo-Classique – 350 DH / mois','abo-hebdo')">
+            <div class="abo-pop">POPULAIRE</div>
+            <div class="abo-plan-name">Hebdo-Classique</div>
+            <div class="abo-plan-price">350 <sub>DH</sub></div>
+            <div class="abo-plan-desc">4 Soins/mois. Le meilleur rapport qualité-prix.</div>
+          </div>
+          <div class="abo-plan" id="abo-trim" onclick="selAbo('Trimestre Zen – 950 DH / trimestre','abo-trim')">
+            <div class="abo-plan-name">Trimestre Zen</div>
+            <div class="abo-plan-price">950 <sub>DH</sub> <span class="abo-plan-old">1050 DH</span></div>
+            <div class="abo-plan-desc">12 Soins programmés d'avance (flexibilité).</div>
+          </div>
+          <div class="abo-plan" id="abo-sem" onclick="selAbo('Semestre VIP – 1800 DH / semestre','abo-sem')">
+            <div class="abo-plan-name">Semestre VIP</div>
+            <div class="abo-plan-price">1800 <sub>DH</sub> <span class="abo-plan-old">2100 DH</span></div>
+            <div class="abo-plan-desc">24 Soins complets. Lavage prioritaire.</div>
+          </div>
+        </div>
+
+        <!-- Step 2 : Véhicule -->
+        <div class="abo-step"><div class="abo-step-num">2</div> VÉHICULE</div>
+        <div class="veh-grid">
+          <div class="veh-card sel" id="veh-citadine" onclick="selVeh('Citadine','veh-citadine')">
+            <div class="vi">🚗</div><span>Citadine</span>
+          </div>
+          <div class="veh-card" id="veh-berline" onclick="selVeh('Berline','veh-berline')">
+            <div class="vi">🚙</div><span>Berline</span>
+          </div>
+          <div class="veh-card" id="veh-suv" onclick="selVeh('SUV / 4x4','veh-suv')">
+            <div class="vi">🚕</div><span>SUV / 4x4</span>
+          </div>
+          <div class="veh-card" id="veh-mono" onclick="selVeh('Monospace','veh-mono')">
+            <div class="vi">🚐</div><span>Monospace</span>
+          </div>
+          <div class="veh-card" id="veh-pickup" onclick="selVeh('Pick-up','veh-pickup')">
+            <div class="vi">🛻</div><span>Pick-up</span>
+          </div>
+          <div class="veh-card" id="veh-moto" onclick="selVeh('Moto / Scooter','veh-moto')">
+            <div class="vi">🏍️</div><span>Moto</span>
+          </div>
+        </div>
+
+        <!-- Step 3 : Coordonnées -->
+        <div class="abo-step"><div class="abo-step-num">3</div> VOS COORDONNÉES</div>
+        <div class="fg-row">
+          <div class="fg">
+            <label>Prénom & Nom</label>
+            <input type="text" id="a-name" placeholder="Karim Alaoui"/>
+          </div>
+          <div class="fg">
+            <label>Téléphone</label>
+            <input type="tel" id="a-phone" placeholder="06XXXXXXXX"/>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Adresse / Zone</label>
+          <input type="text" id="a-addr" placeholder="Ex : Casablanca, Maarif"/>
+        </div>
+        <div class="fg">
+          <label>Notes (optionnel)</label>
+          <textarea id="a-notes" placeholder="Disponibilités, remarques particulières…"></textarea>
+        </div>
+        <button class="btn-wa" onclick="sendAboWA()">
+          <span style="font-size:1.3rem">📲</span>
+          Souscrire à l'abonnement sur WhatsApp
+        </button>
+      </div>
     </div>
 
   </div>
@@ -1344,10 +1452,54 @@ function toggleMenu() {
 }
 
 /* ── Type toggle ── */
+let selAboPlan = 'Hebdo-Classique – 350 DH / mois';
+let selVehType = 'Citadine';
+
 function setType(el, type) {
   selType = type;
   document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('on'));
   el.classList.add('on');
+  document.getElementById('panel-ponctuel').style.display = type === 'Ponctuel' ? 'block' : 'none';
+  document.getElementById('panel-abonnement').style.display = type === 'Abonnement' ? 'block' : 'none';
+}
+
+function selAbo(plan, id) {
+  selAboPlan = plan;
+  document.querySelectorAll('.abo-plan').forEach(p => p.classList.remove('sel'));
+  document.getElementById(id).classList.add('sel');
+}
+
+function selVeh(veh, id) {
+  selVehType = veh;
+  document.querySelectorAll('.veh-card').forEach(c => c.classList.remove('sel'));
+  document.getElementById(id).classList.add('sel');
+}
+
+/* ── Abonnement WhatsApp ── */
+function sendAboWA() {
+  const name  = document.getElementById('a-name').value.trim();
+  const phone = document.getElementById('a-phone').value.trim();
+  const addr  = document.getElementById('a-addr').value.trim();
+  const notes = document.getElementById('a-notes').value.trim();
+
+  if(!name || !phone || !addr) {
+    showToast('⚠️ Veuillez remplir : Nom, Téléphone et Adresse.');
+    return;
+  }
+
+  let m = `🔄 *NOUVEL ABONNEMENT — CarWash Pro*\n`;
+  m += `━━━━━━━━━━━━━━━━━━━━\n`;
+  m += `👤 *Nom :* ${name}\n`;
+  m += `📞 *Téléphone :* ${phone}\n`;
+  m += `📍 *Adresse :* ${addr}\n`;
+  m += `📦 *Formule :* ${selAboPlan}\n`;
+  m += `🚙 *Véhicule :* ${selVehType}\n`;
+  if(notes) m += `📝 *Notes :* ${notes}\n`;
+  m += `━━━━━━━━━━━━━━━━━━━━\n`;
+  m += `✅ Merci de confirmer mon abonnement !`;
+
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(m)}`, '_blank');
+  showToast('✅ Redirection vers WhatsApp...');
 }
 
 /* ── Build WhatsApp message ── */
