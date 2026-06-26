@@ -779,6 +779,22 @@ footer{
       <button class="btn-svc">🗓️ Réserver ce forfait</button>
     </div>
 
+    <div class="svc reveal" onclick="openModal('Detailing Vapeur','500 DH')">
+      <div class="svc-icon">♨️</div>
+      <h3>Detailing Vapeur</h3>
+      <p class="svc-desc">Rénovation habitacle vapeur, traitement antibactérien. Nettoyage en profondeur garanti.</p>
+      <div class="svc-price">500 <sub>DH</sub></div>
+      <ul class="svc-feats">
+        <li><span class="ck">✓</span> Nettoyage vapeur haute température</li>
+        <li><span class="ck">✓</span> Traitement antibactérien complet</li>
+        <li><span class="ck">✓</span> Rénovation sièges & moquettes</li>
+        <li><span class="ck">✓</span> Joints & plastiques dégraissés</li>
+        <li><span class="ck">✓</span> Élimination odeurs tenaces</li>
+        <li><span class="ck">✓</span> Résultat showroom garanti</li>
+      </ul>
+      <button class="btn-svc">🗓️ Réserver ce forfait</button>
+    </div>
+
   </div>
 </section>
 
@@ -1006,27 +1022,65 @@ footer{
           <label>Adresse / Zone</label>
           <input type="text" id="f-addr" placeholder="Ex : Casablanca, Maarif, Rue X"/>
         </div>
-        <div class="fg">
-          <label>Forfait souhaité</label>
-          <select id="f-pack">
-            <option value="">— Sélectionner un forfait —</option>
-            <option value="Soin Extérieur – 49 DH">🚿 Soin Extérieur – 49 DH</option>
-            <option value="Soin Intégral – 99 DH">✨ Soin Intégral – 99 DH (Recommandé)</option>
-            <option value="Protection Céramique – 150 DH">🛡️ Protection Céramique – 150 DH</option>
-          </select>
+        <!-- Step 1 : Forfait -->
+        <div class="abo-step"><div class="abo-step-num">1</div> CHOIX DU FORFAIT</div>
+        <div class="abo-plans">
+          <div class="abo-plan" id="pon-ext" onclick="selPonPack('Soin Extérieur – 49 DH','pon-ext')">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div class="abo-plan-name">Soin Extérieur</div>
+              <div class="abo-plan-price" style="font-size:1.4rem">49 <sub>DH</sub></div>
+            </div>
+            <div class="abo-plan-desc">Lavage haute pression, finition jantes et cire protectrice.</div>
+          </div>
+          <div class="abo-plan sel" id="pon-int" onclick="selPonPack('Soin Intégral – 99 DH','pon-int')">
+            <div class="abo-pop">RECOMMANDÉ</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div class="abo-plan-name">Soin Intégral</div>
+              <div class="abo-plan-price" style="font-size:1.4rem">99 <sub>DH</sub></div>
+            </div>
+            <div class="abo-plan-desc">Aspiration, plastiques, nettoyage carrosserie &amp; vitres.</div>
+          </div>
+          <div class="abo-plan" id="pon-pro" onclick="selPonPack('Protection Céramique – 150 DH','pon-pro')">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div class="abo-plan-name">Protection</div>
+              <div class="abo-plan-price" style="font-size:1.4rem">150 <sub>DH</sub></div>
+            </div>
+            <div class="abo-plan-desc">Traitement carrosserie effet hydrophobe brillance durable.</div>
+          </div>
+          <div class="abo-plan" id="pon-det" onclick="selPonPack('Detailing Vapeur – 500 DH','pon-det')">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div class="abo-plan-name">Detailing Vapeur</div>
+              <div class="abo-plan-price" style="font-size:1.4rem">500 <sub>DH</sub></div>
+            </div>
+            <div class="abo-plan-desc">Rénovation habitacle vapeur, traitement antibactérien.</div>
+          </div>
         </div>
-        <div class="fg">
-          <label>Type de véhicule</label>
-          <select id="f-car">
-            <option value="">— Type de véhicule —</option>
-            <option>Citadine</option>
-            <option>Berline</option>
-            <option>SUV / 4x4</option>
-            <option>Monospace / Van</option>
-            <option>Pick-up / Utilitaire</option>
-            <option>Moto / Scooter</option>
-          </select>
+
+        <!-- Step 2 : Véhicule -->
+        <div class="abo-step"><div class="abo-step-num">2</div> VÉHICULE</div>
+        <div class="veh-grid">
+          <div class="veh-card sel" id="pveh-citadine" onclick="selPonVeh('Citadine','pveh-citadine')">
+            <div class="vi">🚗</div><span>Citadine</span>
+          </div>
+          <div class="veh-card" id="pveh-berline" onclick="selPonVeh('Berline','pveh-berline')">
+            <div class="vi">🚙</div><span>Berline</span>
+          </div>
+          <div class="veh-card" id="pveh-suv" onclick="selPonVeh('SUV / 4x4','pveh-suv')">
+            <div class="vi">🚕</div><span>SUV</span>
+          </div>
+          <div class="veh-card" id="pveh-util" onclick="selPonVeh('Utilitaire','pveh-util')">
+            <div class="vi">🚐</div><span>Utilitaire</span>
+          </div>
+          <div class="veh-card" id="pveh-pickup" onclick="selPonVeh('Pick-up','pveh-pickup')">
+            <div class="vi">🛻</div><span>Pick-up</span>
+          </div>
+          <div class="veh-card" id="pveh-moto" onclick="selPonVeh('Moto / Scooter','pveh-moto')">
+            <div class="vi">🏍️</div><span>Moto</span>
+          </div>
         </div>
+
+        <!-- Step 3 : Coordonnées -->
+        <div class="abo-step"><div class="abo-step-num">3</div> VOS COORDONNÉES</div>
         <div class="fg-row">
           <div class="fg">
             <label>Date souhaitée</label>
@@ -1454,6 +1508,8 @@ function toggleMenu() {
 /* ── Type toggle ── */
 let selAboPlan = 'Hebdo-Classique – 350 DH / mois';
 let selVehType = 'Citadine';
+let selPonPlan = 'Soin Intégral – 99 DH';
+let selPonVehType = 'Citadine';
 
 function setType(el, type) {
   selType = type;
@@ -1471,7 +1527,19 @@ function selAbo(plan, id) {
 
 function selVeh(veh, id) {
   selVehType = veh;
-  document.querySelectorAll('.veh-card').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll('#panel-abonnement .veh-card').forEach(c => c.classList.remove('sel'));
+  document.getElementById(id).classList.add('sel');
+}
+
+function selPonPack(plan, id) {
+  selPonPlan = plan;
+  document.querySelectorAll('#panel-ponctuel .abo-plan').forEach(p => p.classList.remove('sel'));
+  document.getElementById(id).classList.add('sel');
+}
+
+function selPonVeh(veh, id) {
+  selPonVehType = veh;
+  document.querySelectorAll('#panel-ponctuel .veh-card').forEach(c => c.classList.remove('sel'));
   document.getElementById(id).classList.add('sel');
 }
 
@@ -1525,18 +1593,16 @@ function sendWA() {
   const name  = document.getElementById('f-name').value.trim();
   const phone = document.getElementById('f-phone').value.trim();
   const addr  = document.getElementById('f-addr').value.trim();
-  const pack  = document.getElementById('f-pack').value;
-  const car   = document.getElementById('f-car').value;
   const date  = document.getElementById('f-date').value;
   const time  = document.getElementById('f-time').value;
   const notes = document.getElementById('f-notes').value.trim();
 
-  if(!name || !phone || !addr || !pack) {
-    showToast('⚠️ Veuillez remplir : Nom, Téléphone, Adresse et Forfait.');
+  if(!name || !phone || !addr) {
+    showToast('⚠️ Veuillez remplir : Nom, Téléphone et Adresse.');
     return;
   }
 
-  const msg = buildMsg(name, phone, addr, pack, car, date, time, notes, selType);
+  const msg = buildMsg(name, phone, addr, selPonPlan, selPonVehType, date, time, notes, selType);
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
   showToast('✅ Redirection vers WhatsApp...');
 }
