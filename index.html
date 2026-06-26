@@ -1686,10 +1686,37 @@ function goBook() {
   document.getElementById('reservation').scrollIntoView({behavior:'smooth'});
 }
 
-/* ── Set min date ── */
-const today = new Date().toISOString().split('T')[0];
-document.getElementById('f-date').min = today;
-document.getElementById('m-date').min = today;
+/* ── Morocco time (Africa/Casablanca) ── */
+const nowMA = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Casablanca' }));
+const yyyy  = nowMA.getFullYear();
+const mm    = String(nowMA.getMonth() + 1).padStart(2, '0');
+const dd    = String(nowMA.getDate()).padStart(2, '0');
+const today = `${yyyy}-${mm}-${dd}`;
+
+/* Set min + default value = today */
+['f-date','m-date'].forEach(id => {
+  const el = document.getElementById(id);
+  el.min   = today;
+  el.value = today;
+});
+
+/* Pre-select next available 30-min slot */
+const curH = nowMA.getHours();
+const curM = nowMA.getMinutes();
+const nextM = curM < 30 ? 30 : 0;
+const nextH = curM < 30 ? curH : curH + 1;
+const slotStr = nextH < 20 && nextH >= 8
+  ? `${String(nextH).padStart(2,'0')}:${String(nextM).padStart(2,'0')}`
+  : '08:00';
+
+['f-time','m-time'].forEach(id => {
+  const sel = document.getElementById(id);
+  if(sel) {
+    for(let i = 0; i < sel.options.length; i++){
+      if(sel.options[i].value === slotStr){ sel.selectedIndex = i; break; }
+    }
+  }
+});
 
 /* ── Keyboard close modal ── */
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
