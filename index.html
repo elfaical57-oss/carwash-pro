@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Fmi Nettoyage – Lavage à Domicile Casablanca</title>
-<meta name="description" content="Service de lavage automobile à domicile à Casablanca. Réservation rapide sur WhatsApp. Forfaits dès 49 DH."/>
+<meta name="description" content="Service de lavage automobile à domicile à Casablanca. Réservation rapide sur WhatsApp. Forfaits à partir de 99 DH."/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -628,6 +628,22 @@ footer{
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 
+/* ═══ PRICE TABLE ═══ */
+.price-table-wrap{max-width:1100px;margin:48px auto 0;overflow-x:auto;border-radius:18px;border:1px solid rgba(255,255,255,.07)}
+.price-table{width:100%;border-collapse:collapse;min-width:600px}
+.price-table thead tr{background:rgba(255,107,0,.12)}
+.price-table th{color:var(--or);font-size:.78rem;font-weight:700;letter-spacing:1.5px;padding:16px 20px;text-align:center;white-space:nowrap}
+.price-table th:first-child{text-align:left}
+.price-table td{padding:14px 20px;border-top:1px solid rgba(255,255,255,.05);text-align:center;font-size:.9rem;color:var(--tx)}
+.price-table td:first-child{text-align:left;display:flex;align-items:center;gap:10px;font-weight:600}
+.price-table tr:hover td{background:rgba(255,255,255,.03)}
+.pt-price{font-weight:900;color:var(--or);font-size:1rem}
+.pt-veh-icon{font-size:1.3rem}
+.price-extras{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:28px;max-width:1100px;margin-inline:auto}
+.price-extra{background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.2);border-radius:12px;padding:14px 22px;text-align:center;font-size:.87rem;color:var(--mt)}
+.price-extra strong{color:var(--or);display:block;font-size:1rem;margin-top:4px}
+.svc-duration{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border-radius:50px;padding:5px 14px;font-size:.78rem;font-weight:700;color:var(--mt);margin-bottom:18px}
+
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:768px){
   .nav-links{display:none}
@@ -730,71 +746,114 @@ footer{
   </div>
   <div class="services-grid">
 
-    <div class="svc reveal" onclick="openModal('Soin Extérieur','49 DH')">
-      <div class="svc-icon">🚿</div>
-      <h3>Soin Extérieur</h3>
-      <p class="svc-desc">Lavage haute pression, finition jantes et cire protectrice. Idéal pour un entretien régulier.</p>
-      <div class="svc-price">49 <sub>DH</sub></div>
+    <div class="svc reveal" onclick="openModal('Soin Intégral','à partir de 99 DH')">
+      <div class="svc-icon">✨</div>
+      <div class="svc-duration">⏱ 1h – 1h30</div>
+      <h3>Soin Intégral</h3>
+      <p class="svc-desc">Aspiration complète, nettoyage carrosserie, jantes & vitres. L'entretien régulier idéal.</p>
+      <div class="svc-price">dès 99 <sub>DH</sub></div>
       <ul class="svc-feats">
         <li><span class="ck">✓</span> Lavage haute pression carrosserie</li>
-        <li><span class="ck">✓</span> Nettoyage des jantes & pneus</li>
-        <li><span class="ck">✓</span> Application cire protectrice</li>
-        <li><span class="ck">✓</span> Nettoyage vitres extérieures</li>
-        <li><span class="ck">✓</span> Séchage professionnel</li>
-      </ul>
-      <button class="btn-svc">🗓️ Réserver ce forfait</button>
-    </div>
-
-    <div class="svc rec reveal" onclick="openModal('Soin Intégral','99 DH')">
-      <div class="rec-badge">⭐ RECOMMANDÉ</div>
-      <div class="svc-icon">✨</div>
-      <h3>Soin Intégral</h3>
-      <p class="svc-desc">Aspiration, plastiques, nettoyage carrosserie & vitres. La formule complète la plus populaire.</p>
-      <div class="svc-price">99 <sub>DH</sub></div>
-      <ul class="svc-feats">
-        <li><span class="ck">✓</span> Tout le Soin Extérieur inclus</li>
         <li><span class="ck">✓</span> Aspiration habitacle complète</li>
-        <li><span class="ck">✓</span> Nettoyage plastiques intérieurs</li>
+        <li><span class="ck">✓</span> Nettoyage des jantes & pneus</li>
         <li><span class="ck">✓</span> Vitres intérieures & extérieures</li>
-        <li><span class="ck">✓</span> Désodorisation véhicule</li>
         <li><span class="ck">✓</span> Nettoyage tableau de bord</li>
+        <li><span class="ck">✓</span> Désodorisation & parfum intérieur</li>
       </ul>
       <button class="btn-svc">🗓️ Réserver ce forfait</button>
     </div>
 
-    <div class="svc reveal" onclick="openModal('Protection Céramique','150 DH')">
+    <div class="svc rec reveal" onclick="openModal('Protection Céramique','à partir de 150 DH')">
+      <div class="rec-badge">⭐ RECOMMANDÉ</div>
       <div class="svc-icon">🛡️</div>
+      <div class="svc-duration">⏱ 2h – 3h</div>
       <h3>Protection Céramique</h3>
-      <p class="svc-desc">Traitement carrosserie effet hydrophobe, brillance durable. Protection maximale pour votre véhicule.</p>
-      <div class="svc-price">150 <sub>DH</sub></div>
+      <p class="svc-desc">Tout le Soin Intégral + traitement céramique hydrophobe. Brillance durable, protection maximale.</p>
+      <div class="svc-price">dès 150 <sub>DH</sub></div>
       <ul class="svc-feats">
         <li><span class="ck">✓</span> Tout le Soin Intégral inclus</li>
         <li><span class="ck">✓</span> Traitement céramique carrosserie</li>
         <li><span class="ck">✓</span> Effet hydrophobe longue durée</li>
         <li><span class="ck">✓</span> Brillance professionnelle intense</li>
         <li><span class="ck">✓</span> Protection UV & rayures légères</li>
-        <li><span class="ck">✓</span> Durabilité 3-6 mois</li>
+        <li><span class="ck">✓</span> Durabilité 3–6 mois</li>
       </ul>
       <button class="btn-svc">🗓️ Réserver ce forfait</button>
     </div>
 
-    <div class="svc reveal" onclick="openModal('Detailing Vapeur','500 DH')">
+    <div class="svc reveal" onclick="openModal('Detailing Vapeur','à partir de 500 DH')">
       <div class="svc-icon">♨️</div>
+      <div class="svc-duration">⏱ 3h+</div>
       <h3>Detailing Vapeur</h3>
-      <p class="svc-desc">Rénovation habitacle vapeur, traitement antibactérien. Nettoyage en profondeur garanti.</p>
-      <div class="svc-price">500 <sub>DH</sub></div>
+      <p class="svc-desc">Rénovation complète habitacle vapeur haute température, traitement antibactérien garanti.</p>
+      <div class="svc-price">dès 500 <sub>DH</sub></div>
       <ul class="svc-feats">
+        <li><span class="ck">✓</span> Tout le pack Céramique inclus</li>
         <li><span class="ck">✓</span> Nettoyage vapeur haute température</li>
         <li><span class="ck">✓</span> Traitement antibactérien complet</li>
         <li><span class="ck">✓</span> Rénovation sièges & moquettes</li>
-        <li><span class="ck">✓</span> Joints & plastiques dégraissés</li>
-        <li><span class="ck">✓</span> Élimination odeurs tenaces</li>
+        <li><span class="ck">✓</span> Nettoyage plafond & joints</li>
         <li><span class="ck">✓</span> Résultat showroom garanti</li>
       </ul>
       <button class="btn-svc">🗓️ Réserver ce forfait</button>
     </div>
 
   </div>
+
+  <!-- Tableau de prix par type de véhicule -->
+  <div class="price-table-wrap reveal">
+    <table class="price-table">
+      <thead>
+        <tr>
+          <th>TYPE DE VÉHICULE</th>
+          <th>SOIN INTÉGRAL</th>
+          <th>PROTECTION CÉRAMIQUE</th>
+          <th>DETAILING VAPEUR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pt-veh-icon">🚗</span> Citadine</td>
+          <td><span class="pt-price">99 DH</span></td>
+          <td><span class="pt-price">150 DH</span></td>
+          <td><span class="pt-price">500 DH</span></td>
+        </tr>
+        <tr>
+          <td><span class="pt-veh-icon">🚙</span> Berline</td>
+          <td><span class="pt-price">129 DH</span></td>
+          <td><span class="pt-price">200 DH</span></td>
+          <td><span class="pt-price">650 DH</span></td>
+        </tr>
+        <tr>
+          <td><span class="pt-veh-icon">🚕</span> SUV</td>
+          <td><span class="pt-price">159 DH</span></td>
+          <td><span class="pt-price">250 DH</span></td>
+          <td><span class="pt-price">800 DH</span></td>
+        </tr>
+        <tr>
+          <td><span class="pt-veh-icon">🚘</span> 4x4 & SUV Luxe</td>
+          <td><span class="pt-price">199 DH</span></td>
+          <td><span class="pt-price">300 DH</span></td>
+          <td><span class="pt-price">950 DH</span></td>
+        </tr>
+        <tr>
+          <td><span class="pt-veh-icon">🚐</span> Minibus / Van</td>
+          <td><span class="pt-price">249 DH</span></td>
+          <td><span class="pt-price">400 DH</span></td>
+          <td><span class="pt-price">1200 DH</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Extras & suppléments -->
+  <div class="price-extras reveal">
+    <div class="price-extra">📍 À partir de 25 km<strong>+50 DH</strong></div>
+    <div class="price-extra">🌙 À partir de 20h<strong>+100 DH</strong></div>
+    <div class="price-extra">🏍️ Nettoyage Moto<strong>70 DH</strong></div>
+    <div class="price-extra">📅 Abonnements mensuels<strong>dès 350 DH</strong></div>
+  </div>
+
 </section>
 
 <!-- ─── POURQUOI NOUS ─── -->
@@ -1024,34 +1083,28 @@ footer{
         <!-- Step 1 : Forfait -->
         <div class="abo-step"><div class="abo-step-num">1</div> CHOIX DU FORFAIT</div>
         <div class="abo-plans">
-          <div class="abo-plan" id="pon-ext" onclick="selPonPack('Soin Extérieur – 49 DH','pon-ext')">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <div class="abo-plan-name">Soin Extérieur</div>
-              <div class="abo-plan-price" style="font-size:1.4rem">49 <sub>DH</sub></div>
-            </div>
-            <div class="abo-plan-desc">Lavage haute pression, finition jantes et cire protectrice.</div>
-          </div>
-          <div class="abo-plan sel" id="pon-int" onclick="selPonPack('Soin Intégral – 99 DH','pon-int')">
-            <div class="abo-pop">RECOMMANDÉ</div>
+          <div class="abo-plan sel" id="pon-int" onclick="selPonPack('Soin Intégral – dès 99 DH','pon-int')">
+            <div class="abo-pop">POPULAIRE</div>
             <div style="display:flex;justify-content:space-between;align-items:center">
               <div class="abo-plan-name">Soin Intégral</div>
-              <div class="abo-plan-price" style="font-size:1.4rem">99 <sub>DH</sub></div>
+              <div class="abo-plan-price" style="font-size:1.4rem">dès 99 <sub>DH</sub></div>
             </div>
-            <div class="abo-plan-desc">Aspiration, plastiques, nettoyage carrosserie &amp; vitres.</div>
+            <div class="abo-plan-desc">Aspiration, plastiques, nettoyage carrosserie &amp; vitres. 1h–1h30.</div>
           </div>
-          <div class="abo-plan" id="pon-pro" onclick="selPonPack('Protection Céramique – 150 DH','pon-pro')">
+          <div class="abo-plan" id="pon-pro" onclick="selPonPack('Protection Céramique – dès 150 DH','pon-pro')">
+            <div class="abo-pop" style="background:var(--or)">RECOMMANDÉ</div>
             <div style="display:flex;justify-content:space-between;align-items:center">
-              <div class="abo-plan-name">Protection</div>
-              <div class="abo-plan-price" style="font-size:1.4rem">150 <sub>DH</sub></div>
+              <div class="abo-plan-name">Protection Céramique</div>
+              <div class="abo-plan-price" style="font-size:1.4rem">dès 150 <sub>DH</sub></div>
             </div>
-            <div class="abo-plan-desc">Traitement carrosserie effet hydrophobe brillance durable.</div>
+            <div class="abo-plan-desc">Traitement céramique hydrophobe, brillance durable. 2h–3h.</div>
           </div>
-          <div class="abo-plan" id="pon-det" onclick="selPonPack('Detailing Vapeur – 500 DH','pon-det')">
+          <div class="abo-plan" id="pon-det" onclick="selPonPack('Detailing Vapeur – dès 500 DH','pon-det')">
             <div style="display:flex;justify-content:space-between;align-items:center">
               <div class="abo-plan-name">Detailing Vapeur</div>
-              <div class="abo-plan-price" style="font-size:1.4rem">500 <sub>DH</sub></div>
+              <div class="abo-plan-price" style="font-size:1.4rem">dès 500 <sub>DH</sub></div>
             </div>
-            <div class="abo-plan-desc">Rénovation habitacle vapeur, traitement antibactérien.</div>
+            <div class="abo-plan-desc">Rénovation habitacle vapeur, traitement antibactérien. 3h+.</div>
           </div>
         </div>
 
@@ -1383,9 +1436,9 @@ footer{
     <div class="footer-col">
       <h5>SERVICES</h5>
       <ul>
-        <li><a href="#services">Soin Extérieur – 49 DH</a></li>
-        <li><a href="#services">Soin Intégral – 99 DH</a></li>
-        <li><a href="#services">Protection Céramique – 150 DH</a></li>
+        <li><a href="#services">Soin Intégral – dès 99 DH</a></li>
+        <li><a href="#services">Protection Céramique – dès 150 DH</a></li>
+        <li><a href="#services">Detailing Vapeur – dès 500 DH</a></li>
         <li><a href="#reservation">Abonnement mensuel</a></li>
         <li><a href="#contact">Flottes entreprises</a></li>
       </ul>
@@ -1537,7 +1590,7 @@ function toggleMenu() {
 /* ── Type toggle ── */
 let selAboPlan = 'Hebdo-Classique – 350 DH / mois';
 let selVehType = 'Citadine';
-let selPonPlan = 'Soin Intégral – 99 DH';
+let selPonPlan = 'Soin Intégral – dès 99 DH';
 let selPonVehType = 'Citadine';
 
 function setType(el, type) {
